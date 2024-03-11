@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	.container{
+        margin-left: 280px;
+	}
+	.visible{
+		width: 1000px;
+		height: 500px;			
+		border-radius: 13px;
+		overflow:hidden;
+		position: relative;
+	}
+	.hidden{
+		display: flex;
+		position: absolute;
+		top: 0;
+		left:0px;
+		transition: all 1.5s;
+	}
+	.hidden img{
+		width: 1000px;
+		height: 500px;
+	}
+	.button-group{
+		width: 500px;
+		height: 30px;
+		margin-left: 220px;
+		margin-top: 30px;
+		display: flex;
+		justify-content: space-between;
+	}
+	.btn{
+		width: 80px;
+		height: 30px;
+		color: white;
+		border: none;
+		border-radius: 8px;
+		background-color: rgb(47, 84, 234);
+		transition: all .7s;
+		
+	}
+	.btn:hover{
+		background-color: rgb(3, 3, 248);
+	}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="visible">
+		<div class="hidden" id="images">
+			<img src="1.jpg">
+			<img src="2.jpg">
+			<img src="3.jpg">
+		</div>
+	</div>
+	<div class="button-group">
+			
+		<button onclick="prev()" class="btn">prev</button>
+		<button onclick="dot(0)" class="btn">1</button>
+		<button onclick="dot(1)" class="btn">2</button>
+		<button onclick="dot(2)" class="btn">3</button>
+		<button onclick="next()" class="btn">next</button>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	let son = 0
+	let a = 0
+	let content = document.getElementById('images')
+	function dot(index){
+		a=0
+		son = index
+		if(son>=3){
+			son=0
+		}
+		if(son<0){
+			son=2
+		}
+		content.style.left = -son*1000+'px';
+	}
+	function time(){
+		a++
+		setTimeout("time()",1500)
+		if(a==3){
+			next()
+		}
+	}
+	function prev(){
+		son--
+		dot(son)
+	}
+	function next(){
+		son++
+		dot(son)
+	}
+	time()
+</script>
+</body>
+</html>
